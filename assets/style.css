@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0%;
+    margin: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+/* this is the box around the questions */
+.container {
+    max-width: 80%;
+    width:40vw;
+    border-radius: 5px;
+    background-color:lightgray;
+    padding: 10px;
+    
+}
+/* formats the buttons into a column style like the mock up */
+.btn-grid {
+    display: grid;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+button {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color:white;
+    height: 40px;
+    width: 200px;
+    background-color:darkcyan;
+}
+
+button:hover {
+    border-color: cyan; 
+
+}
+.start {
+    font-weight:bold;
+    padding:10px 10px
+}
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction:column;
+}
+
+.hide {
+    display: none;
+}
+
