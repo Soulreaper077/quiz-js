@@ -41,6 +41,11 @@ button:hover {
     border-color: cyan; 
 
 }
+
+
+.data-number-text {
+    width: 100%;
+}
 .start {
     font-weight:bold;
     padding:10px 10px
