@@ -55,7 +55,7 @@ const questionLimit = 5;
 const timerEl = document.getElementById("timer");
 const timeTick = document.getElementById("time-down");
 const startButton = document.getElementById("startButton");
-const container = document.getElementById("container");
+const container = document.getElementsByClassName("container");
 const question = document.getElementById("question");
 const ansButtons = Array.from(document.getElementsByClassName("btn"));
 // console.log(ansButtons);
@@ -91,7 +91,9 @@ function startGame(){
     // classList in order to change the css in this case getting the "hide" elements 
     startButton.classList.add("hide"); // hides the start btn 
     highScores.classList.add("hide"); // hides high score btn 
+    //container.classList.remove("hide");
     questionBox.classList.remove("hide"); //remove to display the questions box and answers 
+    
     questionCounter = 0;
     score = 0;
     availableQuestions = [...allQuestions]; // spread operator to display questions from array 
@@ -138,12 +140,26 @@ ansButtons.forEach(choice => { // for each to get all the choices
     }else {
         setAns = "incorrect!"; // else if wrong answer display incorrect 
     };
-    console.log(setAns);
-    selectChoice.parentElement.classList.add(setAns);
 
+    if(setAns === "correct") {
+        incrementScore(score)
+    };
+    console.log(setAns);
+
+    setTimeout(() => { // setTimeout function calls the function after x amount of milliseconds 
+    selectChoice.parentElement.classList.add(setAns);
     newQuestion(); // generates a new question after being answered 
+
+    }, 100)
     });
     });
+
+    function incrementScore(num) {
+        score +-num;
+        scoreText.innerText = score; 
+    }; 
+
+
 
     function resetScore() {
         localStorage.clear();
@@ -153,7 +169,6 @@ ansButtons.forEach(choice => { // for each to get all the choices
         highScoreCnt.push(score);
         localStorage.setItem("highScoreCnt", JSON.stringify(highScoreCnt));
     };
-
     // game over function 
     function endGame() {
         questionBox.remove();

@@ -10,6 +10,7 @@ body {
     height: 100vh;
     justify-content: center;
     align-items: center;
+    background-color:lightgray;
 }
 
 header {
@@ -21,14 +22,31 @@ header {
     font-size: 30px; 
     margin-bottom: 500px; 
     border: solid 3px darkcyan; 
+    background-color: mintcream;
 }
+
+.scores {
+    display: flex;
+    justify-content:center;
+    height: 100px;
+    padding: 10px;
+    font-size: 30px;
+    margin-bottom:500px;
+    width: 150px;
+    border: solid 3px darkcyan; 
+    margin-left: 10px; 
+    background-color: mintcream;
+
+}
+
 /* this is the box around the questions */
 .container {
     max-width: 80%;
     width:40vw;
     border-radius: 5px;
-    background-color:lightgray;
+    background-color:mintcream;
     padding: 10px;
+    border: solid 5px lightseagreen; 
     
 }
 /* formats the buttons into a column style like the mock up */
@@ -71,4 +89,5 @@ button:hover {
 .hide {
     display: none;
 }
+
 
