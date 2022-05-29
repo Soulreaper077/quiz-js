@@ -3,7 +3,7 @@ var score = 0;
 var availableQuestions = [];
 var questionCounter = 0;
 var currentQuestion = {};
-var time =90;
+var time =60;
 var runningTimer;
 var username ="";
 var finalScore;
@@ -53,13 +53,15 @@ var allQuestions = [
 ]
 const questionLimit = 5;
 const timerEl = document.getElementById("timer");
+const timeTick = document.getElementById("time-down");
 const startButton = document.getElementById("startButton");
 const container = document.getElementById("container");
 const question = document.getElementById("question");
 const ansButtons = Array.from(document.getElementsByClassName("btn"));
-console.log(ansButtons);
+// console.log(ansButtons);
 const countDown = document.getElementById("timerBox");
 const highScores = document.getElementById("highScoresButton");
+const highScoreCnt = document.getElementById("highScores");
 const questionBox = document.getElementById("questionBox");
 //document.getElementById('btn1').innerText = allQuestions[0].choice1
 startButton.addEventListener("click", startGame);
@@ -70,22 +72,22 @@ function countdown() {
     timeLeft = setTimeout(function () {
         timeLeft --;
         if (timeLeft > 1) {
-            timer.textContent = timeLeft;
-            timeLeft;
+            timeTick.textContent = timeLeft;
+            timeLeft --;
         }
         else if (timeLeft ===1) {
-            timer.textContent = timeLeft;
+            timeTick.textContent = timeLeft;
             timeLeft --;
         }else {
-            timer.textContent = "";
+            timeTick.textContent = "";
             
             questionBox.classList.add("hide");
         }
-
     })
-}
+};
 //function to start the game 
 function startGame(){
+    
     // classList in order to change the css in this case getting the "hide" elements 
     startButton.classList.add("hide"); // hides the start btn 
     highScores.classList.add("hide"); // hides high score btn 
@@ -94,9 +96,8 @@ function startGame(){
     score = 0;
     availableQuestions = [...allQuestions]; // spread operator to display questions from array 
     console.log(availableQuestions);
+    newQuestion();   // return new question  
     //countdown();
-    newQuestion();   // return new question 
-    
 };
 // generate a new question for every turn 
 function newQuestion(){
@@ -116,34 +117,51 @@ function newQuestion(){
         choice.innerText = currentQuestion["choice" + number];
         console.log(choice);
     });
+    availableQuestions.splice(choiceIndex, 1) // splice the choice index so that the questions wont repeat themselves 
     correctAnswer = true; 
-
 }; 
 
-ansButtons.forEach(choice => {
-    choice.addEventListener("click", e => {
+ansButtons.forEach(choice => { // for each to get all the choices 
+    choice.addEventListener("click", e => { // adding an event listener to each of the 4 choices 
         //alert( "clicked me");
         console.log(e.target);
     if(!correctAnswer) return; 
-
     correctAnswer = false;
-    const selectChoice = e.target;
+    const selectChoice = e.target; // makes sure that the constant selectChoice is equal the the targeted event listener 
     //console.log(e.target); 
-    const selectAnswer = selectChoice.dataset["number"];
+    const selectAnswer = selectChoice.dataset["number"]; // const selectAnswer will equal that of the dataset number chosen 
     console.log(selectAnswer, currentQuestion.answer);
-
-    const setAns = "incorrect";
+        // trying to make the default of answers incorrect and switching to correct if choosing the right one 
+    let setAns = ""; // setting the value of setAns to nothing 
     if (selectAnswer == currentQuestion.answer) {
-        setAns = "correct";
+        setAns = "correct!"; // if the value equals to that of the correct answer is will display correct 
+    }else {
+        setAns = "incorrect!"; // else if wrong answer display incorrect 
     };
+    console.log(setAns);
     selectChoice.parentElement.classList.add(setAns);
 
-
-    newQuestion();
+    newQuestion(); // generates a new question after being answered 
     });
     });
 
-startGame();
+    function resetScore() {
+        localStorage.clear();
+    };
+    var finalScore = function() {
+        score = (input.value);
+        highScoreCnt.push(score);
+        localStorage.setItem("highScoreCnt", JSON.stringify(highScoreCnt));
+    };
+
+    // game over function 
+    function endGame() {
+        questionBox.remove();
+
+    }
+
+// start game function 
+// startGame();
 
 
 

@@ -11,6 +11,17 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+header {
+    display :flex; 
+    justify-content:center;
+    height: 100px;
+    width: 150px;
+    padding: 10px; 
+    font-size: 30px; 
+    margin-bottom: 500px; 
+    border: solid 3px darkcyan; 
+}
 /* this is the box around the questions */
 .container {
     max-width: 80%;
