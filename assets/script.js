@@ -61,7 +61,7 @@ const ansButtons = Array.from(document.getElementsByClassName("btn"));
 // console.log(ansButtons);
 const countDown = document.getElementById("timerBox");
 const highScores = document.getElementById("highScoresButton");
-const highScoreCnt = document.getElementById("highScores");
+const urScore = document.getElementById("urScore");
 const questionBox = document.getElementById("questionBox");
 //document.getElementById('btn1').innerText = allQuestions[0].choice1
 startButton.addEventListener("click", startGame);
@@ -149,25 +149,24 @@ ansButtons.forEach(choice => { // for each to get all the choices
     setTimeout(() => { // setTimeout function calls the function after x amount of milliseconds 
     selectChoice.parentElement.classList.add(setAns);
     newQuestion(); // generates a new question after being answered 
-
-    }, 100)
+    }, 100) // sets the set timeout to 100 millisecond wait 
     });
     });
 
     function incrementScore(num) {
         score +-num;
-        scoreText.innerText = score; 
+        urScore.innerText = score; 
+        console.log(urScore);
     }; 
-
-
 
     function resetScore() {
         localStorage.clear();
     };
+
     var finalScore = function() {
         score = (input.value);
-        highScoreCnt.push(score);
-        localStorage.setItem("highScoreCnt", JSON.stringify(highScoreCnt));
+        urScore.push(score);
+        localStorage.setItem("urScore", JSON.stringify(urScore));
     };
     // game over function 
     function endGame() {

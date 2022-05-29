@@ -68,6 +68,7 @@ button {
 
 button:hover {
     border-color: cyan; 
+    border-width: 3px;
 
 }
 
