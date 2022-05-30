@@ -4,6 +4,7 @@ var availableQuestions = [];
 var questionCounter = 0;
 var currentQuestion = {};
 
+
 var runningTimer;
 var username ="";
 var finalScore;
@@ -94,6 +95,7 @@ function startGame(){
     console.log(availableQuestions);
     newQuestion();   // return new question  
     countdown();
+    
 };
 // generate a new question for every turn 
 function newQuestion(){
@@ -136,13 +138,29 @@ ansButtons.forEach(choice => { // for each to get all the choices
     if(setAns === "correct!") {
         incrementScore(score)
     };
-    console.log(setAns);
+    alert(setAns);
     setTimeout(() => { // setTimeout function calls the function after x amount of milliseconds 
     selectChoice.parentElement.classList.add(setAns);
     newQuestion(); // generates a new question after being answered 
     }, 100) // sets the set timeout to 100 millisecond wait 
+
+    function productTime() {
+        if(setAns === "correct!") {
+            time = time + 10; 
+            timeTick.innerHTML = time ;
+        } else if( setAns === "incorrect!") {
+            time = time - 10;
+            timeTick.innerHTML = time;
+            console.log(timeTick)
+        };
+    };
+
+    productTime();
+
     });
     });
+
+
 // scores section 
     function incrementScore(num) { // called on function to increment the score by 1 in answered correctly 
         score ++; // adds 1 to the score board if the question was correct 
@@ -150,11 +168,7 @@ ansButtons.forEach(choice => { // for each to get all the choices
         console.log(logScore);
     }; 
 
-    function productTime() {
-        if (setAns === "correct!") {
-            
-        }
-    }
+    
     function resetScore() {
         localStorage.clear();
     };
@@ -164,21 +178,17 @@ ansButtons.forEach(choice => { // for each to get all the choices
         logScore.push(score);
         localStorage.setItem("logScore", JSON.stringify(logScore));
     };
-/*
-    highScoresList.innerHTML =
-    highScores.map(score => {
-        return `<li class="high-score">$(score.name) - $(score.score)<li>`
-    })
-
     // game over function 
     function endGame() {
+        if (timeTick === "Done!") {
         questionBox.remove();
-
     }
-*/
+    }
+
 
 // start game function 
-// startGame();
+//startGame();
+//endGame();
 
 
 

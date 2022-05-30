@@ -1,13 +1,9 @@
-const username = document.querySelector("#username")
-const saveBtn = document.querySelectorAll("#saveBtn")
-const endScore = document.querySelectorAll("#endScore")
+const username = document.getElementById("username")
+const saveBtn = document.getElementById("saveBtn")
+const endScore = document.getElementById("endScore")
 const highScores = JSON.parse(localStorage.getItem("highScores")) 
 const MAX_SCORE = 5
 
-endScore.innerText = urScore
-username.addEventListener("keyup", () => {
-    saveBtn = !username.value
-})
 
 saveHighScore = e => {
     e.preventDefault()
@@ -25,6 +21,6 @@ saveHighScore = e => {
 
     highScores.splice(5)
 
-    localStorage.setitem("highScores", JSON.stringify(highScores))
+    localStorage.setItem("highScores", JSON.stringify(highScores))
     window.location.assign("/")
 }
