@@ -63,6 +63,7 @@ const countDown = document.getElementById("timerBox");
 const highScores = document.getElementById("highScoresButton");
 const highScoresList = document.getElementById("highScoresList");
 const urScore = document.getElementById("urScore");
+const logScore = document.getElementById("logScore");
 const questionBox = document.getElementById("questionBox");
 //document.getElementById('btn1').innerText = allQuestions[0].choice1
 startButton.addEventListener("click", startGame);
@@ -132,11 +133,10 @@ ansButtons.forEach(choice => { // for each to get all the choices
     }else {
         setAns = "incorrect!"; // else if wrong answer display incorrect 
     };
-    if(setAns === "correct") {
+    if(setAns === "correct!") {
         incrementScore(score)
     };
     console.log(setAns);
-
     setTimeout(() => { // setTimeout function calls the function after x amount of milliseconds 
     selectChoice.parentElement.classList.add(setAns);
     newQuestion(); // generates a new question after being answered 
@@ -144,20 +144,25 @@ ansButtons.forEach(choice => { // for each to get all the choices
     });
     });
 // scores section 
-    function incrementScore(num) {
-        score +-num;
-        urScore.innerText = score; 
-        console.log(urScore);
+    function incrementScore(num) { // called on function to increment the score by 1 in answered correctly 
+        score ++; // adds 1 to the score board if the question was correct 
+        logScore.innerText = score; // changes inner text of logScore element 
+        console.log(logScore);
     }; 
 
+    function productTime() {
+        if (setAns === "correct!") {
+            
+        }
+    }
     function resetScore() {
         localStorage.clear();
     };
 
     var finalScore = function() {
         score = (input.value);
-        urScore.push(score);
-        localStorage.setItem("urScore", JSON.stringify(urScore));
+        logScore.push(score);
+        localStorage.setItem("logScore", JSON.stringify(logScore));
     };
 /*
     highScoresList.innerHTML =
