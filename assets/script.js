@@ -3,7 +3,7 @@ var score = 0;
 var availableQuestions = [];
 var questionCounter = 0;
 var currentQuestion = {};
-var time =60;
+
 var runningTimer;
 var username ="";
 var finalScore;
@@ -61,45 +61,38 @@ const ansButtons = Array.from(document.getElementsByClassName("btn"));
 // console.log(ansButtons);
 const countDown = document.getElementById("timerBox");
 const highScores = document.getElementById("highScoresButton");
+const highScoresList = document.getElementById("highScoresList");
 const urScore = document.getElementById("urScore");
 const questionBox = document.getElementById("questionBox");
 //document.getElementById('btn1').innerText = allQuestions[0].choice1
 startButton.addEventListener("click", startGame);
 highScoresButton.addEventListener("click", highScores);
-
+// function for countdown timer 
+var time = 60; // starting the countdown at 1 minute 
 function countdown() {
-    let timeLeft = 60;
-    timeLeft = setTimeout(function () {
-        timeLeft --;
-        if (timeLeft > 1) {
-            timeTick.textContent = timeLeft;
-            timeLeft --;
-        }
-        else if (timeLeft ===1) {
-            timeTick.textContent = timeLeft;
-            timeLeft --;
-        }else {
-            timeTick.textContent = "";
-            
-            questionBox.classList.add("hide");
-        }
-    })
-};
+var downloadTimer = setInterval(function(){
+    if(time <= 0){ // if statement for time being time being finished 
+    clearInterval(downloadTimer); // clear interval stops the set interval function 
+    document.getElementById("time-down").innerHTML = "Done!"; // if no time left then it will be finished
+    } else {
+    document.getElementById("time-down").innerHTML = time + ""; // if there is time it will display on countdown
+    }
+    time -= 1;
+}, 1000); // delayed by 1 second after the function is called 
+}
 //function to start the game 
 function startGame(){
-    
     // classList in order to change the css in this case getting the "hide" elements 
     startButton.classList.add("hide"); // hides the start btn 
     highScores.classList.add("hide"); // hides high score btn 
     //container.classList.remove("hide");
     questionBox.classList.remove("hide"); //remove to display the questions box and answers 
-    
     questionCounter = 0;
     score = 0;
     availableQuestions = [...allQuestions]; // spread operator to display questions from array 
     console.log(availableQuestions);
     newQuestion();   // return new question  
-    //countdown();
+    countdown();
 };
 // generate a new question for every turn 
 function newQuestion(){
@@ -122,7 +115,6 @@ function newQuestion(){
     availableQuestions.splice(choiceIndex, 1) // splice the choice index so that the questions wont repeat themselves 
     correctAnswer = true; 
 }; 
-
 ansButtons.forEach(choice => { // for each to get all the choices 
     choice.addEventListener("click", e => { // adding an event listener to each of the 4 choices 
         //alert( "clicked me");
@@ -140,7 +132,6 @@ ansButtons.forEach(choice => { // for each to get all the choices
     }else {
         setAns = "incorrect!"; // else if wrong answer display incorrect 
     };
-
     if(setAns === "correct") {
         incrementScore(score)
     };
@@ -152,7 +143,7 @@ ansButtons.forEach(choice => { // for each to get all the choices
     }, 100) // sets the set timeout to 100 millisecond wait 
     });
     });
-
+// scores section 
     function incrementScore(num) {
         score +-num;
         urScore.innerText = score; 
@@ -168,11 +159,18 @@ ansButtons.forEach(choice => { // for each to get all the choices
         urScore.push(score);
         localStorage.setItem("urScore", JSON.stringify(urScore));
     };
+/*
+    highScoresList.innerHTML =
+    highScores.map(score => {
+        return `<li class="high-score">$(score.name) - $(score.score)<li>`
+    })
+
     // game over function 
     function endGame() {
         questionBox.remove();
 
     }
+*/
 
 // start game function 
 // startGame();
