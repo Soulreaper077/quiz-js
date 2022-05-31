@@ -114,6 +114,9 @@ h1 {
     color: darkcyan;
     
 }
+h2 {
+    color:lightseagreen
+}
 
 #playBtn {
     display: flex;

@@ -124,7 +124,7 @@ const endScore= document.getElementById("endScore");
     function endGame() {
         if (availableQuestions.length === 0) {
         questionBox.remove();
-        //endScore.innerText = urScore; 
+        localStorage.setItem("egScore", score);
         return window.location.assign("./game-end-page/closing.html");
         };
     }; 

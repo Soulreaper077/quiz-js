@@ -1,26 +1,12 @@
-//const username = document.getElementById("username")
+const usersName = document.getElementById("usersName")
 const saveBtn = document.getElementById("saveBtn")
 const endScore = document.getElementById("endScore")
-//const highScores = JSON.parse(localStorage.getItem("highScores")) 
-const MAX_SCORE = 5
+const egScore = localStorage.getItem("egScore")
 
+endScore.innerText = egScore;
 
-saveHighScore = e => {
-    e.preventDefault()
+function localScore(e) {
+    e.preventDefault(); 
 
-    const score = {
-        score: urScore,
-        name: username.value
-    }
-
-    highScores.push(score)
-
-    highScores.sort((a,b) => {
-        return b.score - a.score 
-    })
-
-    highScores.splice(5)
-
-    localStorage.setItem("highScores", JSON.stringify(highScores))
-    window.location.assign("/")
 }
+
