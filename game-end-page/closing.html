@@ -5,22 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>closing page </title>
-    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
     <div class="container">
         <div id ="end" class="clex-center flex-column">
-            <h1 id="endScore">0</h1>
+            
             <form class="end-form-container">
+                <h1 id="endScore">0</h1>
                 <h2 id="end-text">Enter initials below </h2>
                 <input type="text" name="name" id="username" placeholder="Enter initials">
                 <button class="btn" id="saveBtn" type="submit"
-                onClick="saveHighScore(event)"></button>
+                onClick="saveHighScore(event)">Save Score</button>
                 </input>
+            <button class="btn" id="playBtn" >Play Again</button>   
             </form>
-            <a href="/index.html" class="btn">Play Again</a>
+            
         </div>
     </div>
+    
     <script src="endgame.js"></script>
+    <script src="../assets/script.js"></script>
+    
 </body>
 </html>

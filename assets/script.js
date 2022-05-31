@@ -68,7 +68,7 @@ const logScore = document.getElementById("logScore");
 const questionBox = document.getElementById("questionBox");
 //document.getElementById('btn1').innerText = allQuestions[0].choice1
 startButton.addEventListener("click", startGame);
-highScoresButton.addEventListener("click", highScores);
+//highScoresButton.addEventListener("click", highScores);
 // function for countdown timer 
 var time = 60; // starting the countdown at 1 minute 
 function countdown() {
@@ -86,7 +86,7 @@ var downloadTimer = setInterval(function(){
 function startGame(){
     // classList in order to change the css in this case getting the "hide" elements 
     startButton.classList.add("hide"); // hides the start btn 
-    highScores.classList.add("hide"); // hides high score btn 
+    //highScores.classList.add("hide"); // hides high score btn 
     //container.classList.remove("hide");
     questionBox.classList.remove("hide"); //remove to display the questions box and answers 
     questionCounter = 0;
@@ -100,6 +100,8 @@ function startGame(){
 // generate a new question for every turn 
 function newQuestion(){
     questionCounter++;
+
+    
     const choiceIndex = Math.floor(Math.random() * availableQuestions.length);
     //pulling the random question from the questions array 
     currentQuestion = availableQuestions[choiceIndex];
@@ -117,6 +119,17 @@ function newQuestion(){
     });
     availableQuestions.splice(choiceIndex, 1) // splice the choice index so that the questions wont repeat themselves 
     correctAnswer = true; 
+const endScore= document.getElementById("endScore");
+// game over function 
+    function endGame() {
+        if (availableQuestions.length === 0) {
+        questionBox.remove();
+        //endScore.innerText = urScore; 
+        return window.location.assign("./game-end-page/closing.html");
+        };
+    }; 
+
+endGame();
 }; 
 ansButtons.forEach(choice => { // for each to get all the choices 
     choice.addEventListener("click", e => { // adding an event listener to each of the 4 choices 
@@ -178,32 +191,8 @@ ansButtons.forEach(choice => { // for each to get all the choices
         logScore.push(score);
         localStorage.setItem("logScore", JSON.stringify(logScore));
     };
-    // game over function 
-    function endGame() {
-        if (timeTick === "Done!") {
-        questionBox.remove();
-    }
-    }
-
-
+    
+    
 // start game function 
 //startGame();
-//endGame();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

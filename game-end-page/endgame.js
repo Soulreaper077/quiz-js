@@ -1,7 +1,7 @@
-const username = document.getElementById("username")
+//const username = document.getElementById("username")
 const saveBtn = document.getElementById("saveBtn")
 const endScore = document.getElementById("endScore")
-const highScores = JSON.parse(localStorage.getItem("highScores")) 
+//const highScores = JSON.parse(localStorage.getItem("highScores")) 
 const MAX_SCORE = 5
 
 
